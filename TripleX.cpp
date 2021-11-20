@@ -1,11 +1,11 @@
 #include <iostream>
 
 
-void PrintIntroduction()
+void PrintIntroduction(int LevelDifficulty)
 {
     std::cout << std::endl;
     std::cout << "You are one of the most intelligent humans being\n";
-    std::cout << "And you find this door with a touch screen in a secret mistery island\n";
+    std::cout << "And you find the door # "<< LevelDifficulty <<" with a touch screen in a secret mistery island\n";
     std::cout << "You want to know what is through the door... \n";
     std::cout << "But there is only one chance or the touch screen will block \n";
     std::cout << "I think you are smart enough to find the 3 numbers that I need for you to came in\n";
@@ -16,13 +16,13 @@ void PrintIntroduction()
 }
 
 
-bool PlayGame()
+bool PlayGame(int LevelDifficulty)
 {
-    PrintIntroduction();
+    PrintIntroduction(LevelDifficulty);
 
     int CodeA = 2;
-    int CodeB = 2;
-    int CodeC = 2;
+    int CodeB = 3;
+    int CodeC = 4;
     int CodeSum = CodeA + CodeB + CodeC;
     int CodeProduct = CodeA * CodeB * CodeC;
     std::cout << "+ There are 3 numbers in the code\n";
@@ -55,12 +55,12 @@ int main()
     int LevelDifficulty = 1;
     while(true)
     {
-        bool bLevelComplete = PlayGame();
+        bool bLevelComplete = PlayGame(LevelDifficulty);
         std::cin.clear();
         std::cin.ignore();
         if(bLevelComplete)
         {
-
+            ++LevelDifficulty;
         }
     }
 
