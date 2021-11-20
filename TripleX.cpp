@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <ctime>
 
 void PrintIntroduction(int LevelDifficulty)
 {
@@ -15,14 +15,18 @@ void PrintIntroduction(int LevelDifficulty)
    
 }
 
+int GenerateDifficul(int LevelDifficulty){
+    return rand() % LevelDifficulty + LevelDifficulty;
+}
+
 
 bool PlayGame(int LevelDifficulty)
 {
     PrintIntroduction(LevelDifficulty);
 
-    int CodeA = 2;
-    int CodeB = 3;
-    int CodeC = 4;
+    int CodeA = GenerateDifficul(LevelDifficulty);
+    int CodeB = GenerateDifficul(LevelDifficulty);
+    int CodeC = GenerateDifficul(LevelDifficulty);
     int CodeSum = CodeA + CodeB + CodeC;
     int CodeProduct = CodeA * CodeB * CodeC;
     std::cout << "+ There are 3 numbers in the code\n";
@@ -40,20 +44,28 @@ bool PlayGame(int LevelDifficulty)
 
     if(GuessSum == CodeSum && GuessProduct==CodeProduct)
     {
-        std::cout << "\nYou win!\n\n";
+        std::cout << "\nApparently there is another room, but I think you would like to continue don't you!\n\n";
     }
     else
     {
-        std::cout << "\nYou loose\n\n";
+        std::cout << "\n***Try Again***\n\n";
     }
     
     return GuessSum == CodeSum && GuessProduct==CodeProduct;
 }
 
+void PrintCongratulations()
+{
+    std::cout << "\n Congrats to you and your wonderful mind, you just enter the last room with the best treasure\n";
+    std::cout << "You can have every book in the universe, your reward is MORE KNOWLEDGE!!!\n";
+}
+
 int main()
 {
+    srand(time(NULL));
     int LevelDifficulty = 1;
-    while(true)
+    const int MaxDifficulty = 10;
+    while(LevelDifficulty <= MaxDifficulty)
     {
         bool bLevelComplete = PlayGame(LevelDifficulty);
         std::cin.clear();
@@ -63,6 +75,6 @@ int main()
             ++LevelDifficulty;
         }
     }
-
+    PrintCongratulations();
     return 0;
 }
